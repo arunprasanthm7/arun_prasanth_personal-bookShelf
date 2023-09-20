@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MyBookShelf } from './MyBookShelf';
 
 export const BookSearchPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -24,6 +25,9 @@ export const BookSearchPage = () => {
       // Call the fetchData function when the component mounts or when the searchQuery changes
       fetchData();
     }, [searchQuery]);
+    const AddTOBookshelf = () => {
+      document.getElementById('MyBookshelfContainer').innerHTML="cool";
+    }
   
     return (
       <>
@@ -50,13 +54,13 @@ export const BookSearchPage = () => {
             <div className='book-card flex flex-col hor-center'>
             <div className='flex ver-center'>
               <div className='book-title'>Book Title:</div>
-              <div className='book-name' key={book.key}>{book.title}</div>
+              <div className='book-name' key={book.edition_count}>{book.title}</div>
             </div>
             <div className='flex ver-center'>
               <div className='edition-count'>Edition Count:</div>
               <div className='edition-number'>{book.edition_count}</div>
             </div>
-            <div className='add-btn'>Add to Bookshelf</div>
+            <div className='add-btn' onClick={()=>{AddTOBookshelf()}}>Add to Bookshelf</div>
             </div>
           
           ))}
@@ -68,20 +72,3 @@ export const BookSearchPage = () => {
   
   export default BookSearchPage;
   
-
-  
-  
-//   <div>
-//   <input
-//     type="text"
-//     placeholder="Search for books"
-//     value={searchQuery}
-//     onChange={(e) => setSearchQuery(e.target.value)}
-//   />
-
-//   <ul>
-//     {searchResults.map((book) => (
-//       <li key={book.key}>{book.title}</li>
-//     ))}
-//   </ul>
-// </div>
